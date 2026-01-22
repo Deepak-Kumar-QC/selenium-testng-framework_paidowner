@@ -38,6 +38,11 @@ public class ResponsePage extends BasePage{
 
 	    @FindBy(xpath = "//span[normalize-space()='View Phone Number']")
 	    private WebElement viewphonenocta;
+	    
+	    @FindBy(xpath = "//a[normalize-space()='Make Payment']")
+	    private WebElement makepayment;
+	  
+
 	  
 	    // ================== Constructor ==================
 	    OwnerDashboardPage ownerPage;
@@ -49,17 +54,20 @@ public class ResponsePage extends BasePage{
 
 	    // ================== Actions ==================
 
-	    /** Switch to Matching Buyer tab */
-	    public void navigateResponse() {
+	    /** Switch to Matching Buyer tab 
+	     * @throws InterruptedException */
+	    public void navigateResponse() throws InterruptedException {
 	        wait.until(ExpectedConditions.elementToBeClickable(responsetab)).click();
 	        System.out.println("Response tab is clicked Successfully");
-	        
-	        wait.until(ExpectedConditions.elementToBeClickable(approvetab)).click();
+	        Thread.sleep(4000);
+	        wait.until(ExpectedConditions.elementToBeClickable(approvecta)).click();
 	        System.out.println("Approved tab is clickable Successfully");
 	        wait.until(ExpectedConditions.elementToBeClickable(viewphonenocta)).click();
 	        System.out.println("Whatsapp CTA is clickable");
 	        wait.until(ExpectedConditions.elementToBeClickable(buyNow)).click();
 	        System.out.println("BuyNow CTA is clickable from Response tab");
+	        wait.until(ExpectedConditions.elementToBeClickable(makepayment)).click();
+	        System.out.println("MakePayment CTA is clickable from Cart Page");
 	    }
 	    public void approveTabClicked() throws InterruptedException {
 	    	

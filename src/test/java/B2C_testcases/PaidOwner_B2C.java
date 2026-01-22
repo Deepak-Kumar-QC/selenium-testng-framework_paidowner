@@ -148,7 +148,7 @@ public class PaidOwner_B2C extends BasePage {
     	 }
        
     }
-    @Test(priority = -1, description = "Response Page B2C Flow Validation")
+    @Test(priority = 6, description = "Response Page B2C Flow Validation")
     public void responsePage() {
     	log.info("🚀 Starting Response Page B2C Flow Test..");
     	try {
@@ -160,10 +160,10 @@ public class PaidOwner_B2C extends BasePage {
          	orderPage.closeFailure1();
          	ownerPage.closeRenewalPopup();
          	responsePage.navigateResponse();
-         	
-         	log.info("✅ Matching Buyer package purchase flow executed successfully.");
+         	payment.performPayment();
+         	log.info("✅ B2C flow from iApprove Page is executed successfully.");
     		} catch(Exception e) {
-    		log.error("❌ Error during Matching Buyer Payment flow", e.getMessage(), e);
+    		log.error("❌ Error during B2C Flow from iApprove Payment flow", e.getMessage(), e);
    	 }
       
    

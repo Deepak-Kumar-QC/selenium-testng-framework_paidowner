@@ -8,6 +8,7 @@
           <include name="verifyB2CRenewal"/>
           <include name="setUpBrowser"/>
           <include name="verifyB2CRenewalMorePackage"/>
+          <include name="verifyFailurePopup"/>
           <include name="tearDown"/>
           <include name="verifyRefreshProperty"/>
           <include name="verifyMatchingBuyers"/>
