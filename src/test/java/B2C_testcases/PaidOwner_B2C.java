@@ -108,9 +108,9 @@ public class PaidOwner_B2C extends BasePage {
             log.error("❌ Error during Renew more package Flow from Order-Dashboard: {}", e.getMessage(), e);
         } 
     }
-    @Test(priority = -1, description = "Validate Owner Dashboard property selection and Refresh popup handling")
-    public void verifyiapprove() {
-        log.info("🚀 Starting Order Dashboard Renew more package Test...");
+    @Test(priority = 4, description = "Validate Owner Dashboard property selection and Refresh Property Flow")
+    public void verifyRefreshProperty() {
+        log.info("🚀 Starting Owner Dashboard Renew/Refresh Property Test...");
 
         try {
         	orderPage.closeFailure();
@@ -120,21 +120,53 @@ public class PaidOwner_B2C extends BasePage {
             ownerPage.selectPropertyByVisibleText("Property Id - 77692281, Ashok Nagar, Bangalore");
             orderPage.closeFailure();
             ownerPage.closeRenewalPopup();
+            ownerPage.renewCTAClicked();
+            payment.performPayment();
 
-            log.info("✅ Property selection and renewal popup handling verified successfully.");
+            log.info("✅ Property selection and renew/refresh property Flow verified successfully.");
         } catch (Exception e) {
-            log.error("❌ Error during Owner Dashboard property selection: {}", e.getMessage(), e);
+            log.error("❌ Error during Owner Dashboard refresh property Flow: {}", e.getMessage(), e);
         }
-        ownerPage.renewCTAClicked();
-        payment.performPayment();
-        ownerPage.closeWelcomePopupIfVisible();
-        orderPage.closeFailure1();
-        ownerPage.closeRenewalPopup();
-        ownerPage.selectPropertyByVisibleText("Property Id - 77692281, Ashok Nagar, Bangalore");
-        orderPage.closeFailure1();
-        ownerPage.closeRenewalPopup();
-        clickAnywhere();
-        
+           
     }
-
+    @Test(priority = 5, description = "Matching Buyer Page Validation")
+    public void verifyMatchingBuyers(){
+    	log.info("🚀 Starting Matching Buyer Page Sanity");
+    	 try {
+    		orderPage.closeFailure();
+         	ownerPage.closeRenewalPopup();
+         	ownerPage.clickownerswitch();
+         	SwitchOnTab();
+         	ownerPage.selectPropertyByVisibleText("Property Id - 77692281, Ashok Nagar, Bangalore");
+            orderPage.closeFailure();
+            ownerPage.closeRenewalPopup();
+            matchingBuyerPage.navigateMatching();
+            payment.performPayment();
+            log.info("✅ Matching Buyer package purchase flow executed successfully.");
+    	 	} catch(Exception e) {
+    	 	log.error("❌ Error during Matching Buyer Payment flow", e.getMessage(), e);
+    	 }
+       
+    }
+    @Test(priority = -1, description = "Response Page B2C Flow Validation")
+    public void responsePage() {
+    	log.info("🚀 Starting Response Page B2C Flow Test..");
+    	try {
+    		orderPage.closeFailure();
+         	ownerPage.closeRenewalPopup();
+         	ownerPage.clickownerswitch();
+         	SwitchOnTab();
+         	ownerPage.selectPropertyByVisibleText("Property Id - 77692281, Ashok Nagar, Bangalore");
+         	orderPage.closeFailure1();
+         	ownerPage.closeRenewalPopup();
+         	responsePage.navigateResponse();
+         	
+         	log.info("✅ Matching Buyer package purchase flow executed successfully.");
+    		} catch(Exception e) {
+    		log.error("❌ Error during Matching Buyer Payment flow", e.getMessage(), e);
+   	 }
+      
+   
+    }
+    
 }
