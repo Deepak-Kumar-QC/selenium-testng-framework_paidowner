@@ -5,13 +5,15 @@
     <classes>
       <class name="B2C_testcases.PaidOwner_B2C">
         <methods>
-          <include name="verifyB2CRenewal"/>
+          <include name="verifyB2CRenewalOwnerPage"/>
           <include name="setUpBrowser"/>
-          <include name="verifyB2CRenewalMorePackage"/>
-          <include name="verifyFailurePopup"/>
           <include name="tearDown"/>
+          <include name="verifyResponsePage"/>
           <include name="verifyRefreshProperty"/>
           <include name="verifyMatchingBuyers"/>
+          <include name="verifyB2CRenewalOrderPage"/>
+          <include name="verifyRenewalMorePackageOrderPage"/>
+          <include name="verifyFailurePopupOwnerPage"/>
         </methods>
       </class> <!-- B2C_testcases.PaidOwner_B2C -->
     </classes>

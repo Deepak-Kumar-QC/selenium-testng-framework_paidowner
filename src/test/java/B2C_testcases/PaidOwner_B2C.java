@@ -62,7 +62,7 @@ public class PaidOwner_B2C extends BasePage {
 			driver.quit();
 	}
     @Test(priority = 1, description = "Validate Payment flow from Failure Popup- Order Dashboard Page")
-    public void verifyFailurePopup() {
+    public void verifyFailurePopupOrderPage() {
         log.info("🚀 Starting Order Dashboard failure Popup Test...");
 
         try {
@@ -78,7 +78,7 @@ public class PaidOwner_B2C extends BasePage {
         }
     }
     @Test(priority = 2, description = "Validate Renew Flow from Order-Dashboard")
-    public void verifyB2CRenewal() {
+    public void verifyB2CRenewalOrderPage() {
         log.info("🚀 Starting Order Dashboard Renew CTA Test...");
 
         try {
@@ -91,8 +91,8 @@ public class PaidOwner_B2C extends BasePage {
             log.error("❌ Error during Renew Flow from Order-Dashboard: {}", e.getMessage(), e);
         } 
     }
-    @Test(priority = 3, description = "Validate Renew Flow from Order-Dashboard")
-    public void verifyB2CRenewalMorePackage() {
+    @Test(priority = 3, description = "Validate Renew more Package Flow from Order-Dashboard")
+    public void verifyRenewalMorePackageOrderPage() {
         log.info("🚀 Starting Order Dashboard Renew more package Test...");
 
         try {
@@ -149,7 +149,7 @@ public class PaidOwner_B2C extends BasePage {
        
     }
     @Test(priority = 6, description = "Response Page B2C Flow Validation")
-    public void responsePage() {
+    public void verifyResponsePage() {
     	log.info("🚀 Starting Response Page B2C Flow Test..");
     	try {
     		orderPage.closeFailure();
@@ -168,5 +168,62 @@ public class PaidOwner_B2C extends BasePage {
       
    
     }
-    
+    @Test(priority = 7, description = "Response Page B2C Flow Validation")
+    public void verifyFailurePopupOwnerPage() {
+    	log.info("🚀 Starting Owner Page Failure Popup Flow Test..");
+    	try {
+    		orderPage.closeFailure();
+         	ownerPage.closeRenewalPopup();
+         	ownerPage.clickownerswitch();
+         	SwitchOnTab();
+         	ownerPage.closeWelcomePopupIfVisible();
+         	orderPage.handleFailureCard();
+            payment.performPayment();
+            log.info("✅ Successfully Payment flow verified from Failure Popup- Owner Dashboard Page");
+        } catch (Exception e) {
+            log.error("❌ Error during Payment flow from Failure Popup- Owner Dashboard Page: {}", e.getMessage(), e);
+        
+        }
+    }
+    @Test(priority = 8, description = "Validate Renew Flow from Owner-Dashboard")
+    public void verifyB2CRenewalOwnerPage() {
+        log.info("🚀 Starting Owner Dashboard Renew CTA Test...");
+
+        try {
+        	orderPage.closeFailure();
+         	ownerPage.closeRenewalPopup();
+         	ownerPage.clickownerswitch();
+         	SwitchOnTab();
+         	ownerPage.closeWelcomePopupIfVisible();
+         	orderPage.closeFailure();
+        	 ownerPage.clickRenewNow();
+        	 payment.performPayment();
+             
+            log.info("✅ Renew Flow from Owner-Dashboard has executed successfully.");
+        } catch (Exception e) {
+            log.error("❌ Error during Renew Flow from Owner-Dashboard: {}", e.getMessage(), e);
+        } 
+    }
+    @Test(priority = 9, description = "Validate Renew more Package Flow from Owner-Dashboard")
+    public void verifyRenewalMorePackageOwnerPage() {
+        log.info("🚀 Starting Owner Dashboard Renew more package Test...");
+
+        try {
+        	orderPage.closeFailure();
+         	ownerPage.closeRenewalPopup();
+         	ownerPage.clickownerswitch();
+         	SwitchOnTab();
+         	ownerPage.closeWelcomePopupIfVisible();
+         	orderPage.closeFailure();
+        	 ownerPage.clickViewMorePackages();
+        	 ownerPage.printTitaniumPackageDetails();
+             ownerPage.selectTitaniumPackage();
+             ownerPage.printCartDetailsAndProceedToPayment();
+             payment.performPayment();
+             
+            log.info("✅ Renew more package Flow from Owner-Dashboard has executed successfully.");
+        } catch (Exception e) {
+            log.error("❌ Error during Renew more package Flow from Owner-Dashboard: {}", e.getMessage(), e);
+        } 
+    }
 }
