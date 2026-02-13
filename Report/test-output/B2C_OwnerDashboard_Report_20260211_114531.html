@@ -1,0 +1,994 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>OwnerDashboard B2C Automation</title>
+<link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png">
+<link href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@ce8b10435bcbae260c334c0d0c6b61d2c19b6168/spark/css/spark-style.css" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@7cc78ce/spark/js/jsontree.js"></script>
+<style type="text/css"></style></head><body class="spa -report dark">
+  <div class="app">
+    <div class="layout">
+<div class="header navbar">
+<div class="vheader">
+<div class="nav-logo">
+<a href="#">
+<div class="logo" style="background-image: url('https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png')"></div>
+</a>
+</div>
+<ul class="nav-left">
+<li class="search-box">
+<a class="search-toggle" href="#">
+<i class="search-icon fa fa-search"></i>
+<i class="search-icon-close fa fa-close"></i>
+</a>
+</li>
+<li class="search-input"><input id="search-tests" class="form-control" type="text" placeholder="Search..."></li>
+</ul>
+<ul class="nav-right">
+<li class="m-r-10">
+<a href="#"><span class="badge badge-primary">B2C Paid Owner Sanity Test Report</span></a>
+</li>
+<li class="m-r-10">
+<a href="#"><span class="badge badge-primary">Feb 11, 2026 11:45:31 AM</span></a>
+</li>
+</ul>
+</div>
+</div><div class="side-nav">
+<div class="side-nav-inner">
+<ul class="side-nav-menu">
+<li class="nav-item dropdown" onclick="toggleView('test-view')">
+<a id="nav-test" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-list"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('category-view')">
+<a id="nav-category" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-tag"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('dashboard-view')">
+<a id="nav-dashboard" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-bar-chart"></i></span>
+</a>
+</li>
+</ul>
+</div>
+</div>      <div class="vcontainer">
+        <div class="main-content">
+<div class="test-wrapper row view test-view">
+  <div class="test-list">
+    <div class="test-list-tools">
+<ul class="tools pull-left">
+<li><a href="#"><span class="font-size-14">Tests</span></a></li>
+</ul>
+<ul class="tools text-right">
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
+<ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
+<a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
+<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
+<div class="dropdown-divider"></div>
+<a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
+</ul>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
+<ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
+<a class="dropdown-item" href="#">MorningdailySanity</a>
+</ul>
+</li>
+</ul>
+</div>    <div class="test-list-wrapper scrollable">
+      <ul class="test-list-item">
+        <li class="test-item"  status="pass" test-id="1"
+          author=""
+          tag="MorningdailySanity"
+          device="">
+          <div class="test-detail">
+            <p class="name">verifyFailurePopupOrderPage</p>
+            <p class="text-sm">
+              <span>11:46:27 AM</span> / <span>00:00:41:663</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">verifyFailurePopupOrderPage</h5>
+<span class='badge badge-success'>02.11.2026 11:46:27 AM</span>
+<span class='badge badge-danger'>02.11.2026 11:47:08 AM</span>
+<span class='badge badge-default'>00:00:41:663</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">MorningdailySanity</span></div>
+<div class="m-t-10 m-l-5">Payment from Failure Popup - Order Dashboard</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>11:47:08 AM</td>
+        <td>
+          Test passed with screenshot
+    <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyFailurePopupOrderPage_20260211_114708.png' src="C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyFailurePopupOrderPage_20260211_114708.png">
+    
+    </div></div>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:47:08 AM</td>
+        <td>
+          Execution Time: 41485 ms
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:47:08 AM</td>
+        <td>
+          Browser: Chrome
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:47:08 AM</td>
+        <td>
+          Finished At: 11:47:08
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="2"
+          author=""
+          tag="MorningdailySanity"
+          device="">
+          <div class="test-detail">
+            <p class="name">verifyRenewOrderDashboard</p>
+            <p class="text-sm">
+              <span>11:48:02 AM</span> / <span>00:00:23:059</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">verifyRenewOrderDashboard</h5>
+<span class='badge badge-success'>02.11.2026 11:48:02 AM</span>
+<span class='badge badge-danger'>02.11.2026 11:48:25 AM</span>
+<span class='badge badge-default'>00:00:23:059</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">MorningdailySanity</span></div>
+<div class="m-t-10 m-l-5">Renew Flow from Order Dashboard</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>11:48:25 AM</td>
+        <td>
+          Test passed with screenshot
+    <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyRenewOrderDashboard_20260211_114825.png' src="C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyRenewOrderDashboard_20260211_114825.png">
+    
+    </div></div>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:48:25 AM</td>
+        <td>
+          Execution Time: 22088 ms
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:48:25 AM</td>
+        <td>
+          Browser: Chrome
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:48:25 AM</td>
+        <td>
+          Finished At: 11:48:24
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="3"
+          author=""
+          tag="MorningdailySanity"
+          device="">
+          <div class="test-detail">
+            <p class="name">verifyRenewMorePackageOrderDashboard</p>
+            <p class="text-sm">
+              <span>11:49:42 AM</span> / <span>00:00:24:413</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">verifyRenewMorePackageOrderDashboard</h5>
+<span class='badge badge-success'>02.11.2026 11:49:42 AM</span>
+<span class='badge badge-danger'>02.11.2026 11:50:06 AM</span>
+<span class='badge badge-default'>00:00:24:413</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">MorningdailySanity</span></div>
+<div class="m-t-10 m-l-5">Renew More Package from Order Dashboard</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>11:50:06 AM</td>
+        <td>
+          Test passed with screenshot
+    <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyRenewMorePackageOrderDashboard_20260211_115006.png' src="C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyRenewMorePackageOrderDashboard_20260211_115006.png">
+    
+    </div></div>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:50:06 AM</td>
+        <td>
+          Execution Time: 24235 ms
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:50:06 AM</td>
+        <td>
+          Browser: Chrome
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:50:06 AM</td>
+        <td>
+          Finished At: 11:50:06
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="4"
+          author=""
+          tag="MorningdailySanity"
+          device="">
+          <div class="test-detail">
+            <p class="name">verifyRefreshPropertyOwnerPage</p>
+            <p class="text-sm">
+              <span>11:50:38 AM</span> / <span>00:00:39:001</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">verifyRefreshPropertyOwnerPage</h5>
+<span class='badge badge-success'>02.11.2026 11:50:38 AM</span>
+<span class='badge badge-danger'>02.11.2026 11:51:17 AM</span>
+<span class='badge badge-default'>00:00:39:001</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">MorningdailySanity</span></div>
+<div class="m-t-10 m-l-5">Refresh / Renew Property from Owner Dashboard</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>11:51:17 AM</td>
+        <td>
+          Test passed with screenshot
+    <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyRefreshPropertyOwnerPage_20260211_115117.png' src="C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyRefreshPropertyOwnerPage_20260211_115117.png">
+    
+    </div></div>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:51:17 AM</td>
+        <td>
+          Execution Time: 38848 ms
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:51:17 AM</td>
+        <td>
+          Browser: Chrome
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:51:17 AM</td>
+        <td>
+          Finished At: 11:51:17
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="5"
+          author=""
+          tag="MorningdailySanity"
+          device="">
+          <div class="test-detail">
+            <p class="name">verifyMatchingBuyerOwnerPage</p>
+            <p class="text-sm">
+              <span>11:51:48 AM</span> / <span>00:00:38:811</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">verifyMatchingBuyerOwnerPage</h5>
+<span class='badge badge-success'>02.11.2026 11:51:48 AM</span>
+<span class='badge badge-danger'>02.11.2026 11:52:27 AM</span>
+<span class='badge badge-default'>00:00:38:811</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">MorningdailySanity</span></div>
+<div class="m-t-10 m-l-5">Matching Buyer Flow from Owner Dashboard</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>11:52:27 AM</td>
+        <td>
+          Test passed with screenshot
+    <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyMatchingBuyerOwnerPage_20260211_115227.png' src="C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyMatchingBuyerOwnerPage_20260211_115227.png">
+    
+    </div></div>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:52:27 AM</td>
+        <td>
+          Execution Time: 38663 ms
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:52:27 AM</td>
+        <td>
+          Browser: Chrome
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:52:27 AM</td>
+        <td>
+          Finished At: 11:52:27
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="6"
+          author=""
+          tag="MorningdailySanity"
+          device="">
+          <div class="test-detail">
+            <p class="name">verifyResponseOwnerPage</p>
+            <p class="text-sm">
+              <span>11:55:24 AM</span> / <span>00:00:46:951</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">verifyResponseOwnerPage</h5>
+<span class='badge badge-success'>02.11.2026 11:55:24 AM</span>
+<span class='badge badge-danger'>02.11.2026 11:56:11 AM</span>
+<span class='badge badge-default'>00:00:46:951</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=6</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">MorningdailySanity</span></div>
+<div class="m-t-10 m-l-5">Response Page B2C Flow</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>11:56:11 AM</td>
+        <td>
+          Test passed with screenshot
+    <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyResponseOwnerPage_20260211_115611.png' src="C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyResponseOwnerPage_20260211_115611.png">
+    
+    </div></div>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:56:11 AM</td>
+        <td>
+          Execution Time: 46797 ms
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:56:11 AM</td>
+        <td>
+          Browser: Chrome
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:56:11 AM</td>
+        <td>
+          Finished At: 11:56:11
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="7"
+          author=""
+          tag="MorningdailySanity"
+          device="">
+          <div class="test-detail">
+            <p class="name">verifyFailurePopupOwnerPage</p>
+            <p class="text-sm">
+              <span>11:56:43 AM</span> / <span>00:00:26:926</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">verifyFailurePopupOwnerPage</h5>
+<span class='badge badge-success'>02.11.2026 11:56:43 AM</span>
+<span class='badge badge-danger'>02.11.2026 11:57:10 AM</span>
+<span class='badge badge-default'>00:00:26:926</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=7</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">MorningdailySanity</span></div>
+<div class="m-t-10 m-l-5">Failure Popup Payment from Owner Dashboard</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>11:57:10 AM</td>
+        <td>
+          Test passed with screenshot
+    <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyFailurePopupOwnerPage_20260211_115710.png' src="C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyFailurePopupOwnerPage_20260211_115710.png">
+    
+    </div></div>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:57:10 AM</td>
+        <td>
+          Execution Time: 26775 ms
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:57:10 AM</td>
+        <td>
+          Browser: Chrome
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:57:10 AM</td>
+        <td>
+          Finished At: 11:57:09
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="8"
+          author=""
+          tag="MorningdailySanity"
+          device="">
+          <div class="test-detail">
+            <p class="name">verifyRenewOwnerDashboard</p>
+            <p class="text-sm">
+              <span>11:57:41 AM</span> / <span>00:00:36:302</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">verifyRenewOwnerDashboard</h5>
+<span class='badge badge-success'>02.11.2026 11:57:41 AM</span>
+<span class='badge badge-danger'>02.11.2026 11:58:17 AM</span>
+<span class='badge badge-default'>00:00:36:302</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=8</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">MorningdailySanity</span></div>
+<div class="m-t-10 m-l-5">Renew Flow from Owner Dashboard</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>11:58:17 AM</td>
+        <td>
+          Test passed with screenshot
+    <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyRenewOwnerDashboard_20260211_115817.png' src="C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyRenewOwnerDashboard_20260211_115817.png">
+    
+    </div></div>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:58:17 AM</td>
+        <td>
+          Execution Time: 36165 ms
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:58:17 AM</td>
+        <td>
+          Browser: Chrome
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>11:58:17 AM</td>
+        <td>
+          Finished At: 11:58:17
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="9"
+          author=""
+          tag="MorningdailySanity"
+          device="">
+          <div class="test-detail">
+            <p class="name">verifyRenewMorePackageOwnerDashboard</p>
+            <p class="text-sm">
+              <span>11:59:10 AM</span> / <span>00:07:23:649</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">verifyRenewMorePackageOwnerDashboard</h5>
+<span class='badge badge-success'>02.11.2026 11:59:10 AM</span>
+<span class='badge badge-danger'>02.11.2026 12:06:34 PM</span>
+<span class='badge badge-default'>00:07:23:649</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=9</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">MorningdailySanity</span></div>
+<div class="m-t-10 m-l-5">Renew More Package from Owner Dashboard</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>12:06:34 PM</td>
+        <td>
+          Test failed: no such element: Unable to locate element: {"method":"xpath","selector":"//article[starts-with(text(), 'MB')]"}
+  (Session info: chrome=144.0.7559.133)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.32.0', revision: 'd17c8aa950'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [67063123dca2e006e70cce4463ecce35, findElement {value=//article[starts-with(text(), 'MB')], using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\DEEPAK~1.KUM\AppDa...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53814}, goog:processID: 45456, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:53814/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 67063123dca2e006e70cce4463ecce35
+    <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyRenewMorePackageOwnerDashboard_20260211_120634.png' src="C:\Users\Deepak.Kumar\eclipse-workspace\Freeowner\screenshots\verifyRenewMorePackageOwnerDashboard_20260211_120634.png">
+    
+    </div></div>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>12:06:34 PM</td>
+        <td>
+          Exception: java.lang.AssertionError: no such element: Unable to locate element: {"method":"xpath","selector":"//article[starts-with(text(), 'MB')]"}
+  (Session info: chrome=144.0.7559.133)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.32.0', revision: 'd17c8aa950'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [67063123dca2e006e70cce4463ecce35, findElement {value=//article[starts-with(text(), 'MB')], using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\DEEPAK~1.KUM\AppDa...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53814}, goog:processID: 45456, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:53814/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 67063123dca2e006e70cce4463ecce35
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>12:06:34 PM</td>
+        <td>
+          Execution Time: 443294 ms
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>12:06:34 PM</td>
+        <td>
+          Browser: Chrome
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>12:06:34 PM</td>
+        <td>
+          Finished At: 12:06:34
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+<div class="test-content scrollable">
+<div class="test-content-tools">
+<ul><li><a class="back-to-test" href="#"><i class="fa fa-arrow-left"></i></a></li></ul>
+</div>
+<div class="test-content-detail"><div class="detail-body"></div></div>
+</div></div>
+<div class="test-wrapper row view category-view attributes-view">
+<div class="test-list">
+<div class="test-list-tools">
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
+</div>
+<div class="test-list-wrapper scrollable">
+<ul class="test-list-item">
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>8</span>
+<span class='badge log badge-danger'>1</span>
+</span>
+<p class="name">MorningdailySanity</p>
+<p class="duration text-sm">9 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>MorningdailySanity</h4>
+<span status="pass" class='badge log pass-bg'>8 passed</span>
+<span status="fail" class='badge log badge-danger'>1 failed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:46:27 AM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='1'>verifyFailurePopupOrderPage</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:48:02 AM</td>
+<td>
+<a href="#" class="linked" test-id='2' id='2'>verifyRenewOrderDashboard</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:49:42 AM</td>
+<td>
+<a href="#" class="linked" test-id='3' id='3'>verifyRenewMorePackageOrderDashboard</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:50:38 AM</td>
+<td>
+<a href="#" class="linked" test-id='4' id='4'>verifyRefreshPropertyOwnerPage</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:51:48 AM</td>
+<td>
+<a href="#" class="linked" test-id='5' id='5'>verifyMatchingBuyerOwnerPage</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:55:24 AM</td>
+<td>
+<a href="#" class="linked" test-id='6' id='6'>verifyResponseOwnerPage</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:56:43 AM</td>
+<td>
+<a href="#" class="linked" test-id='7' id='7'>verifyFailurePopupOwnerPage</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:57:41 AM</td>
+<td>
+<a href="#" class="linked" test-id='8' id='8'>verifyRenewOwnerDashboard</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>11:59:10 AM</td>
+<td>
+<a href="#" class="linked" test-id='9' id='9'>verifyRenewMorePackageOwnerDashboard</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="test-content scrollable">
+<div class="test-content-detail">
+<div class="detail-body"></div>
+</div>
+</div>
+</div><div class="container-fluid p-4 view dashboard-view">
+<div class="row">
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0">Started</p>
+<h3>Feb 11, 2026 11:45:31 AM</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0">Ended</p>
+<h3>Feb 11, 2026 12:06:37 PM</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0 text-pass">Tests Passed</p>
+<h3>8</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0 text-fail">Tests Failed</p>
+<h3>1</h3>
+</div></div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Tests</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='parent-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='88%'>
+<b>8</b> tests passed
+</small>
+</div>
+<div>
+<small data-tooltip='11%'><b>1</b> tests failed,
+<b>0</b> skipped, <b data-tooltip='0%'>0</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Log events</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='events-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='21%'><b>8</b> events passed</small></div>
+<div>
+<small data-tooltip='5%'><b>2</b> events failed,
+<b data-tooltip='%'>27</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><div class="col-md-12">
+<div class="card"><div class="card-header"><p>Timeline</p></div>
+<div class="card-body pt-0"><div>
+<canvas id="timeline" height="120"></canvas>
+</div></div>
+</div>
+</div></div>
+<script>
+var timeline = {
+"verifyFailurePopupOrderPage":41.663,"verifyRenewOrderDashboard":23.059,"verifyRenewMorePackageOrderDashboard":24.413,"verifyRefreshPropertyOwnerPage":39.001,"verifyMatchingBuyerOwnerPage":38.811,"verifyResponseOwnerPage":46.951,"verifyFailurePopupOwnerPage":26.926,"verifyRenewOwnerDashboard":36.302,"verifyRenewMorePackageOwnerDashboard":443.649
+};
+</script>
+<div class="row">
+<div class="col-lg-6 col-md-12 category-container">
+<div class="card">
+<div class="card-header"><p>Tags</p></div>
+<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+<thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
+<tr>
+<td>MorningdailySanity</td>
+<td>8</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>88.889%</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 sysenv-container">
+<div class="card">
+<div class="card-header"><p>System/Environment</p></div>
+<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+<thead><tr class="bg-gray"><th>Name</th><th>Value</th></tr></thead>
+<tbody>
+<tr>
+<td>QA Engineer</td>
+<td>Deepak Kumar</td>
+</tr>
+<tr>
+<td>QC Environment</td>
+<td>MB Production</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+var statusGroup = {
+parentCount: 5,
+passParent: 8,
+failParent: 1,
+warningParent: 0,
+skipParent: 0,
+childCount: 5,
+passChild: 0,
+failChild: 0,
+warningChild: 0,
+skipChild: 0,
+infoChild: 0,
+grandChildCount: 5,
+passGrandChild: 0,
+failGrandChild: 0,
+warningGrandChild: 0,
+skipGrandChild: 0,
+infoGrandChild: 0,
+eventsCount: 5,
+passEvents: 8,
+failEvents: 2,
+warningEvents: 0,
+skipEvents: 0,
+infoEvents: 27
+};
+</script>        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@ce8b10435bcbae260c334c0d0c6b61d2c19b6168/spark/js/spark-script.js"></script>
+<script type="text/javascript"></script></body>
+</html>

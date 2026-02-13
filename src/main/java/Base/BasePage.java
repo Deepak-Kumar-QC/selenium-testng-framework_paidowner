@@ -56,6 +56,11 @@ public class BasePage {
         options.addArguments("--no-first-run");
         options.addArguments("--no-default-browser-check");
         options.addArguments("--start-maximized");
+        options.addArguments("--disable-device-discovery-notifications");
+        options.addArguments("--disable-webrtc");
+        options.addArguments("--disable-features=WebRtcHideLocalIpsWithMdns");
+        options.addArguments("--disable-infobars");
+        options.addArguments("--disable-extensions");
         
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
@@ -92,7 +97,7 @@ public class BasePage {
         oconfig = new Properties();
         oconfig.load(file);
         file.close();
-        log.info("✅ Freeowner Config file loaded");
+        log.info("✅ PaidOwner WEB Config file loaded");
     }
     
     

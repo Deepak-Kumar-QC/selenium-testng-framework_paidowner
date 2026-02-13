@@ -1,13 +1,14 @@
 package B2C_testcases;
 
-
 import java.time.Duration;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import Base.BasePage;
@@ -17,213 +18,254 @@ import Pages.OrderPage;
 import Pages.OwnerDashboardPage;
 import Pages.PaymentPage;
 import Pages.ResponsePage;
+import Reports.TestListener;
+import utils.ApiUtils;
+import utils.DbUtils;
 
+@Listeners(TestListener.class)
 public class PaidOwner_B2C extends BasePage {
 
-    private static final Logger log = LogManager.getLogger(PaidOwner_B2C.class);
-    private LoginPage login;
-    private OrderPage orderPage;
-    private PaymentPage payment;
-    private OwnerDashboardPage ownerPage;
-    private MatchingBuyerPage matchingBuyerPage;
-    private ResponsePage responsePage;
-    @BeforeMethod
-    public void setUpBrowser() throws Exception {
-        try {
-            log.info("✅ Browser setup started.");
-            setup();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-            new WebDriverWait(driver, Duration.ofSeconds(20));
+	private static final Logger log = LogManager.getLogger(PaidOwner_B2C.class);
 
-            initializePages();
-            login.performLogin();
+	private LoginPage login;
+	private OrderPage orderPage;
+	private PaymentPage payment;
+	private OwnerDashboardPage ownerPage;
+	private MatchingBuyerPage matchingBuyerPage;
+	private ResponsePage responsePage;
+	private long ubirfnum;
 
-            log.info("✅ Browser setup completed and user logged in successfully.");
-        } catch (Exception e) {
-            log.error("❌ Error during setup: {}", e.getMessage(), e);
-            throw e;
-        }
-    }
+	// ===================== SETUP =====================
 
-   
-    public void initializePages() {
-        login = new LoginPage(driver);
-        payment = new PaymentPage(driver);
-        orderPage = new OrderPage(driver);
-        ownerPage = new OwnerDashboardPage(driver);
-        matchingBuyerPage = new MatchingBuyerPage(driver);
-        responsePage= new ResponsePage(driver);
-        log.info("✅ Page objects initialized successfully before test method.");
-    }
-    
-    @AfterMethod
-	public void tearDown() {
-		if (driver != null)
-			driver.quit();
+	@BeforeMethod(alwaysRun = true)
+	public void setUpBrowser() throws Exception {
+
+		log.info("🚀 Browser setup started");
+
+		loadConfig();
+		setup();
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		new WebDriverWait(driver, Duration.ofSeconds(20));
+
+		initializePages();
+		login.performLogin();
+
+		/*ubirfnum = ApiUtils.getUserRefNoFromAPI(driver);
+		log.info("UBI received in test class: {}", ubirfnum);
+
+		Assert.assertTrue(ubirfnum > 0, "❌ Invalid ubirfnum");*/
+
+		log.info("✅ User logged in successfully");
 	}
-    @Test(priority = 1, description = "Validate Payment flow from Failure Popup- Order Dashboard Page")
-    public void verifyFailurePopupOrderPage() {
-        log.info("🚀 Starting Order Dashboard failure Popup Test...");
 
-        try {
-            orderPage.handleFailureCard();
-            payment.performPayment();
-            payment.failurePage(); // handles failure scenario if any
-            payment.performPayment();
-         
+	private void initializePages() {
+		login = new LoginPage(driver);
+		orderPage = new OrderPage(driver);
+		payment = new PaymentPage(driver);
+		ownerPage = new OwnerDashboardPage(driver);
+		matchingBuyerPage = new MatchingBuyerPage(driver);
+		responsePage = new ResponsePage(driver);
+	}
 
-            log.info("✅ Successfully Payment flow verified from Failure Popup- Order Dashboard Page");
-        } catch (Exception e) {
-            log.error("❌ Error during Payment flow from Failure Popup- Order Dashboard Page: {}", e.getMessage(), e);
-        }
-    }
-    @Test(priority = 2, description = "Validate Renew Flow from Order-Dashboard")
-    public void verifyB2CRenewalOrderPage() {
-        log.info("🚀 Starting Order Dashboard Renew CTA Test...");
+	@AfterMethod(alwaysRun = true)
+	public void tearDown() {
+		if (driver != null) {
+			driver.quit();
+			log.info("🧹 Browser closed");
+		}
+	}
 
-        try {
-        	 orderPage.closeFailure();
-        	 ownerPage.clickRenewNow();
-        	 payment.performPayment();
-             
-            log.info("✅ Renew Flow from Order-Dashboard has executed successfully.");
-        } catch (Exception e) {
-            log.error("❌ Error during Renew Flow from Order-Dashboard: {}", e.getMessage(), e);
-        } 
-    }
-    @Test(priority = 3, description = "Validate Renew more Package Flow from Order-Dashboard")
-    public void verifyRenewalMorePackageOrderPage() {
-        log.info("🚀 Starting Order Dashboard Renew more package Test...");
+	// ===================== COMMON HELPERS =====================
 
-        try {
-        	 orderPage.closeFailure();
-        	 ownerPage.clickViewMorePackages();
-        	 ownerPage.printTitaniumPackageDetails();
-             ownerPage.selectTitaniumPackage();
-             ownerPage.printCartDetailsAndProceedToPayment();
-             payment.performPayment();
-             
-            log.info("✅ Renew more package Flow from Order-Dashboard has executed successfully.");
-        } catch (Exception e) {
-            log.error("❌ Error during Renew more package Flow from Order-Dashboard: {}", e.getMessage(), e);
-        } 
-    }
-    @Test(priority = 4, description = "Validate Owner Dashboard property selection and Refresh Property Flow")
-    public void verifyRefreshProperty() {
-        log.info("🚀 Starting Owner Dashboard Renew/Refresh Property Test...");
+	/** Safely navigates to Owner Dashboard */
+	private void reachOwnerDashboard() {
+		orderPage.closeFailure();
+		ownerPage.closeRenewalPopup();
+		ownerPage.clickownerswitch();
+		SwitchOnTab();
 
-        try {
-        	orderPage.closeFailure();
-        	ownerPage.closeRenewalPopup();
-        	ownerPage.clickownerswitch();
-        	SwitchOnTab();
-            ownerPage.selectPropertyByVisibleText("Property Id - 77692281, Ashok Nagar, Bangalore");
-            orderPage.closeFailure();
-            ownerPage.closeRenewalPopup();
-            ownerPage.renewCTAClicked();
-            payment.performPayment();
+	}
 
-            log.info("✅ Property selection and renew/refresh property Flow verified successfully.");
-        } catch (Exception e) {
-            log.error("❌ Error during Owner Dashboard refresh property Flow: {}", e.getMessage(), e);
-        }
-           
-    }
-    @Test(priority = 5, description = "Matching Buyer Page Validation")
-    public void verifyMatchingBuyers(){
-    	log.info("🚀 Starting Matching Buyer Page Sanity");
-    	 try {
-    		orderPage.closeFailure();
-         	ownerPage.closeRenewalPopup();
-         	ownerPage.clickownerswitch();
-         	SwitchOnTab();
-         	ownerPage.selectPropertyByVisibleText("Property Id - 77692281, Ashok Nagar, Bangalore");
-            orderPage.closeFailure();
-            ownerPage.closeRenewalPopup();
-            matchingBuyerPage.navigateMatching();
-            payment.performPayment();
-            log.info("✅ Matching Buyer package purchase flow executed successfully.");
-    	 	} catch(Exception e) {
-    	 	log.error("❌ Error during Matching Buyer Payment flow", e.getMessage(), e);
-    	 }
-       
-    }
-    @Test(priority = 6, description = "Response Page B2C Flow Validation")
-    public void verifyResponsePage() {
-    	log.info("🚀 Starting Response Page B2C Flow Test..");
-    	try {
-    		orderPage.closeFailure();
-         	ownerPage.closeRenewalPopup();
-         	ownerPage.clickownerswitch();
-         	SwitchOnTab();
-         	ownerPage.selectPropertyByVisibleText("Property Id - 77692281, Ashok Nagar, Bangalore");
-         	orderPage.closeFailure1();
-         	ownerPage.closeRenewalPopup();
-         	responsePage.navigateResponse();
-         	payment.performPayment();
-         	log.info("✅ B2C flow from iApprove Page is executed successfully.");
-    		} catch(Exception e) {
-    		log.error("❌ Error during B2C Flow from iApprove Payment flow", e.getMessage(), e);
-   	 }
-      
-   
-    }
-    @Test(priority = 7, description = "Response Page B2C Flow Validation")
-    public void verifyFailurePopupOwnerPage() {
-    	log.info("🚀 Starting Owner Page Failure Popup Flow Test..");
-    	try {
-    		orderPage.closeFailure();
-         	ownerPage.closeRenewalPopup();
-         	ownerPage.clickownerswitch();
-         	SwitchOnTab();
-         	ownerPage.closeWelcomePopupIfVisible();
-         	orderPage.handleFailureCard();
-            payment.performPayment();
-            log.info("✅ Successfully Payment flow verified from Failure Popup- Owner Dashboard Page");
-        } catch (Exception e) {
-            log.error("❌ Error during Payment flow from Failure Popup- Owner Dashboard Page: {}", e.getMessage(), e);
-        
-        }
-    }
-    @Test(priority = 8, description = "Validate Renew Flow from Owner-Dashboard")
-    public void verifyB2CRenewalOwnerPage() {
-        log.info("🚀 Starting Owner Dashboard Renew CTA Test...");
+	/** Selects property safely */
+	private void selectOwnerProperty() {
+		String propertyId = oconfig.getProperty("id");
+		String location = oconfig.getProperty("location");
+		if (propertyId == null || location == null) {
+			Assert.fail("❌ Property details missing in config.properties");
+		}
 
-        try {
-        	orderPage.closeFailure();
-         	ownerPage.closeRenewalPopup();
-         	ownerPage.clickownerswitch();
-         	SwitchOnTab();
-         	ownerPage.closeWelcomePopupIfVisible();
-         	orderPage.closeFailure();
-        	 ownerPage.clickRenewNow();
-        	 payment.performPayment();
-             
-            log.info("✅ Renew Flow from Owner-Dashboard has executed successfully.");
-        } catch (Exception e) {
-            log.error("❌ Error during Renew Flow from Owner-Dashboard: {}", e.getMessage(), e);
-        } 
-    }
-    @Test(priority = 9, description = "Validate Renew more Package Flow from Owner-Dashboard")
-    public void verifyRenewalMorePackageOwnerPage() {
-        log.info("🚀 Starting Owner Dashboard Renew more package Test...");
+		String propertyName = "Property Id - " + propertyId + ", " + location;
 
-        try {
-        	orderPage.closeFailure();
-         	ownerPage.closeRenewalPopup();
-         	ownerPage.clickownerswitch();
-         	SwitchOnTab();
-         	ownerPage.closeWelcomePopupIfVisible();
-         	orderPage.closeFailure();
-        	 ownerPage.clickViewMorePackages();
-        	 ownerPage.printTitaniumPackageDetails();
-             ownerPage.selectTitaniumPackage();
-             ownerPage.printCartDetailsAndProceedToPayment();
-             payment.performPayment();
-             
-            log.info("✅ Renew more package Flow from Owner-Dashboard has executed successfully.");
-        } catch (Exception e) {
-            log.error("❌ Error during Renew more package Flow from Owner-Dashboard: {}", e.getMessage(), e);
-        } 
-    }
+		log.info("🏠 Selecting property: {}", propertyName);
+
+		ownerPage.selectPropertyByVisibleText(propertyName);
+		orderPage.closeFailure();
+		ownerPage.closeRenewalPopup();
+	}
+
+	// ===================== TEST CASES =====================
+
+	@Test(priority = 1, description = "Payment from Failure Popup - Order Dashboard")
+	public void verifyFailurePopupOrderPage() {
+		try {
+			orderPage.handleFailureCard();
+			payment.performPayment();
+			payment.failurePage();
+		/*	Assert.assertTrue(
+	                waitForDbEntry(ubirfnum, 5, 5),
+	                "Latest DB entry not found for userRefNo: " + ubirfnum);
+			//.fetchTpustAndTpuseDataUsingUbi(ubirfnum);*/
+			payment.performPayment();
+
+			log.info("✅ Failure popup payment verified from Order Dashboard");
+		} catch (Exception e) {
+			log.error("❌ Failure popup payment failed (Order Dashboard)", e);
+			Assert.fail(e.getMessage());
+		}
+	}
+	private boolean waitForDbEntry(long ubirfnum, int maxAttempts, int waitSeconds) {
+
+	    for (int i = 1; i <= maxAttempts; i++) {
+	        if (DbUtils.isUserRefNoPresentInDB(ubirfnum)) {
+	            log.info("✅ DB entry found on attempt {}", i);
+	            return true;
+	        }
+
+	        log.info("⏳ DB entry not found. Retrying... Attempt {}", i);
+
+	        try {
+	            Thread.sleep(waitSeconds * 1000);
+	        } catch (InterruptedException e) {
+	            Thread.currentThread().interrupt();
+	        }
+	    }
+
+	    return false;
+	}
+
+	@Test(priority = 2, description = "Renew Flow from Order Dashboard")
+	public void verifyRenewOrderDashboard() {
+		try {
+			orderPage.closeFailure();
+			ownerPage.clickRenewNow();
+			payment.performPayment();
+
+			log.info("✅ Renew flow verified from Order Dashboard");
+		} catch (Exception e) {
+			log.error("❌ Renew flow failed (Order Dashboard)", e);
+			Assert.fail(e.getMessage());
+		}
+	}
+
+	@Test(priority = 3, description = "Renew More Package from Order Dashboard")
+	public void verifyRenewMorePackageOrderDashboard() {
+		try {
+			orderPage.closeFailure();
+			ownerPage.clickViewMorePackages();
+			ownerPage.printTitaniumPackageDetails();
+			ownerPage.selectTitaniumPackage();
+			ownerPage.printCartDetailsAndProceedToPayment();
+			payment.performPayment();
+
+			log.info("✅ Renew more package verified from Order Dashboard");
+		} catch (Exception e) {
+			log.error("❌ Renew more package failed (Order Dashboard)", e);
+			Assert.fail(e.getMessage());
+		}
+	}
+
+	@Test(priority = 4, description = "Refresh / Renew Property from Owner Dashboard")
+	public void verifyRefreshPropertyOwnerPage() {
+		try {
+			reachOwnerDashboard();
+			selectOwnerProperty();
+			ownerPage.renewCTAClicked();
+			payment.performPayment();
+
+			log.info("✅ Refresh/Renew property verified from Owner Dashboard");
+		} catch (Exception e) {
+			log.error("❌ Refresh property flow failed", e);
+			Assert.fail(e.getMessage());
+		}
+	}
+
+	@Test(priority = 5, description = "Matching Buyer Flow from Owner Dashboard")
+	public void verifyMatchingBuyerOwnerPage() {
+		try {
+			reachOwnerDashboard();
+			selectOwnerProperty();
+			matchingBuyerPage.navigateMatching();
+			payment.performPayment();
+
+			log.info("✅ Matching Buyer flow verified");
+		} catch (Exception e) {
+			log.error("❌ Matching Buyer flow failed", e);
+			Assert.fail(e.getMessage());
+		}
+	}
+
+	@Test(priority = 6, description = "Response Page B2C Flow")
+	public void verifyResponseOwnerPage() {
+		try {
+			reachOwnerDashboard();
+			selectOwnerProperty();
+			responsePage.navigateResponse();
+			payment.performPayment();
+
+			log.info("✅ Response page B2C flow verified");
+		} catch (Exception e) {
+			log.error("❌ Response page flow failed", e);
+			Assert.fail(e.getMessage());
+		}
+	}
+
+	@Test(priority = 7, description = "Failure Popup Payment from Owner Dashboard")
+	public void verifyFailurePopupOwnerPage() {
+		try {
+			reachOwnerDashboard();
+			ownerPage.closeWelcomePopupIfVisible();
+			orderPage.handleFailureCard();
+			payment.performPayment();
+
+			log.info("✅ Failure popup payment verified from Owner Dashboard");
+		} catch (Exception e) {
+			log.error("❌ Failure popup payment failed (Owner Dashboard)", e);
+			Assert.fail(e.getMessage());
+		}
+	}
+
+	@Test(priority = 8, description = "Renew Flow from Owner Dashboard")
+	public void verifyRenewOwnerDashboard() {
+		try {
+			reachOwnerDashboard();
+			ownerPage.closeWelcomePopupIfVisible();
+			ownerPage.clickRenewNow();
+			payment.performPayment();
+
+			log.info("✅ Renew flow verified from Owner Dashboard");
+		} catch (Exception e) {
+			log.error("❌ Renew flow failed (Owner Dashboard)", e);
+			Assert.fail(e.getMessage());
+		}
+	}
+
+	@Test(priority = 9, description = "Renew More Package from Owner Dashboard")
+	public void verifyRenewMorePackageOwnerDashboard() {
+		try {
+			reachOwnerDashboard();
+			ownerPage.closeWelcomePopupIfVisible();
+			orderPage.closeFailure();
+			ownerPage.clickViewMorePackages();
+			ownerPage.printTitaniumPackageDetails();
+			ownerPage.selectTitaniumPackage();
+			ownerPage.printCartDetailsAndProceedToPayment();
+			payment.performPayment();
+
+			log.info("✅ Renew more package verified from Owner Dashboard");
+		} catch (Exception e) {
+			log.error("❌ Renew more package failed (Owner Dashboard)", e);
+			Assert.fail(e.getMessage());
+		}
+	}
 }

@@ -68,53 +68,65 @@ public class LoginPage extends BasePage{
     }
 
     public void readCaptchaImage() throws Exception {
+
         int maxRetries = 50;
-        boolean success = false;
 
         for (int attempt = 1; attempt <= maxRetries; attempt++) {
-            System.out.println("🔄 Captcha attempt: " + attempt);
 
-            // Wait for captcha image
-            wait.until(ExpectedConditions.visibilityOf(captchaImage));
+            System.out.println("Captcha attempt: " + attempt);
 
-            // Capture captcha image
+            WebElement captchaImage = wait.until(ExpectedConditions
+                    .visibilityOfElementLocated(By.xpath("(//div[@class='signup__captcha--graphic capta'])[1]")));
+
+            // Screenshot captcha
             File src = captchaImage.getScreenshotAs(OutputType.FILE);
             BufferedImage image = ImageIO.read(src);
 
-            // Read image with OCR
             ITesseract tesseract = new Tesseract();
-            tesseract.setDatapath("C:\\Users\\Deepak.Kumar\\Downloads\\testdata"); // update your path
+            tesseract.setDatapath("C:\\Users\\Deepak.Kumar\\Downloads\\testdata");
             tesseract.setLanguage("eng");
 
             String text = tesseract.doOCR(image).replaceAll("[^a-zA-Z0-9]", "").trim();
-            System.out.println("🧠 OCR Captcha text: " + text);
 
-            // Enter captcha text
+            System.out.println("OCR Captcha text: " + text);
+            
+            if (text.length() < 4) {
+                System.out.println("OCR text invalid, refreshing captcha...");
+                wait.until(ExpectedConditions.elementToBeClickable(
+                        By.xpath("//div[@class='signup__captcha--ico-refresh']"))).click();
+                Thread.sleep(1500);
+                continue;
+            }
+
+            WebElement captchaInput = wait.until(ExpectedConditions.elementToBeClickable(By.id("captchaCodeSignIn")));
+
+            // Clear & type normally (restore original behavior)
             captchaInput.clear();
+            captchaInput.click();
+            Thread.sleep(300);
             captchaInput.sendKeys(text);
-            nextButton.click();
-       
 
-            // Wait briefly for captcha error or success
+            // Submit
+            driver.findElement(By.xpath("(//div[@class='m-login__fieldset'])[2]")).click();
             Thread.sleep(2000);
-            List<WebElement> errorMessages = driver.findElements(
-                By.xpath("//*[contains(text(),'Please enter valid captcha')]")
-            );
+
+            // Check error
+            List<WebElement> errorMessages = driver
+                    .findElements(By.xpath("//*[contains(text(),'Please enter valid captcha')]"));
 
             if (errorMessages.isEmpty()) {
-                System.out.println("✅ Captcha verified successfully!");
-                success = true;
-                break;
-            } else {
-                System.out.println("❌ Captcha invalid, retrying...");
+                System.out.println("Captcha verified successfully!");
+                return;
             }
+
+            // 🔥 IMPORTANT: refresh captcha before next retry
+            System.out.println("Captcha invalid, refreshing and retrying...");
+            captchaImage.click();
+            Thread.sleep(1500);
         }
 
-        if (!success) {
-            throw new Exception("❌ Failed to verify captcha after " + maxRetries + " attempts.");
-        }
+        throw new Exception("Captcha verification failed after retries");
     }
-
     public void enterPassword(String pass) {
         wait.until(ExpectedConditions.visibilityOf(password)).sendKeys(pass);
     }
